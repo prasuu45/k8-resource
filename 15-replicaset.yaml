@@ -1,0 +1,22 @@
+apiVersion: app/v1
+kind: replicaSet 
+metadata:
+  name: nginx
+  labels: # these are replicaset labels
+   app: nginx
+   tier: frontend
+spec: # modify replicas according to your case
+  replicas: 3
+  selector: # these are used to select the pod to create replicas
+   matchLabels:
+     tier: frontend
+     app: nginx
+  template:  # this is pod definition
+   metadata: 
+     labels:  # these labels belongs to pod
+       tier: frontend
+       app: nginx
+   spec:
+     containers:
+     - name: nginx
+       image: nginx 
